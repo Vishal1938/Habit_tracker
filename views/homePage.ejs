@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<div class="form_class">
+  <form action="/create-habit" method="POST">
+    <div class="desc_Class">
+      <input type="text" required name="description" placeholder="Enter habit description">
+    </div>
+    <div class="select_and_input">
+      <select name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option>Personal</option>
+        <option>Work</option>
+        <option>Cleaning</option>
+        <option>Others</option>
+      </select>
+      <input type="text" required name="frequency" placeholder="Enter habit frequency (e.g., daily, weekly)">
+      <textarea name="notes" placeholder="Add notes about this habit (optional)"></textarea>
+      <input type="checkbox" name="reminder" id="reminderCheckbox">
+      <label for="reminderCheckbox">Set Reminder</label>
+    </div>
+    <button class="buttonDesign colorGrey" id="submitButton" type="submit"><i class="fa fa-plus-square"></i> Add Habit</button>
+  </form>
+
+  <div>
+    <% for(let habit of habits) { %>
+      <div class="singleTask">
+        <input type="checkbox" name="deleteCheckbox" class="deleteCheckbox" data-habit-id="<%= habit._id %>">
+        <div class="name_and_dueDate">
+          <p class="dispdsc"><%= habit.description %></p>
+          <p class="dueDate"><%= habit.frequency %></p>
+        </div>
+        <div class="catesec">
+          <%= habit.category %>
+        </div>
+        <div class="editClass"><a href="/edit-habit/<%= habit._id %>">Edit</a></div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/js/script.js"></script>

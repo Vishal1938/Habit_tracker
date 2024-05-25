@@ -1,0 +1,23 @@
+<div class="form_class">
+    <h2 class="color-white">EDIT HABIT</h2>
+    <form action="/update-habit/<%= habit._id %>" method="POST">
+      <div class="desc_Class">
+        <input type="text" name="description" value="<%= habit.description %>" required>
+      </div>
+      <div class="select_and_input">
+        <select name="category" required>
+          <option value="" disabled selected>Select Category</option>
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+          <option value="cleaning">Cleaning</option>
+          <option value="others">Others</option>
+        </select>
+        <input type="text" name="frequency" value="<%= habit.frequency %>" placeholder="Enter habit frequency (e.g., daily, weekly)" required>
+        <textarea name="notes" placeholder="Add notes about this habit (optional)"><%= habit.notes %></textarea>
+        <input type="checkbox" name="reminder" id="reminderCheckbox" <%= habit.reminder ? 'checked' : '' %>>
+        <label for="reminderCheckbox">Set Reminder</label>
+      </div>
+      <button type="submit" class="edit-button"> Update Habit</button>
+    </form>
+  </div>
+  
